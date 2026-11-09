@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
 
     public InputActionAsset inputActions;
 
+    public Camera camera;
+
     private float verticalSpeed;
 
     private CharacterController characterController;
@@ -15,6 +17,13 @@ public class PlayerMove : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
+
+    [SerializeField] private Camera mainCamera;
+
+    private void Awake()
+    {
+        if (!mainCamera) mainCamera = Camera.main;
+    }
 
     void Start()
     {
@@ -67,5 +76,9 @@ public class PlayerMove : MonoBehaviour
         movement *= Time.deltaTime;
 
         characterController.Move(movement);
+
+        movement = camera.transform.TransformDirection(movement);
+
+        movement = mainCamera.transform.right * Input.GetAxis("Horizontal") + mainCamera.transform.forward * Input.GetAxis("Vertical");
     }
 }

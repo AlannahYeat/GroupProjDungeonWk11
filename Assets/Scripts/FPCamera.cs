@@ -1,15 +1,16 @@
 using UnityEngine;
 
+
 public class FPCamera : MonoBehaviour
 {
     [Tooltip("The speed of the camera when looking around")]
-    public float sensitivity;
+    public float sensitivity = 1f;
 
     [Tooltip("The minimum rotation allowed around the X Axis")]
-    public float verticalRotationMin;
+    public float verticalRotationMin = -30f;
 
     [Tooltip("The maximum rotation allowed around the X Axis")]
-    public float verticalRotationMax;
+    public float verticalRotationMax = 70f;
 
     [Tooltip("The gameobject to follow in the scene, i.e. the player")]
     public Transform followTransform;
@@ -24,6 +25,8 @@ public class FPCamera : MonoBehaviour
     // Awake() happens before Start()
     void Awake()
     {
+        
+
         currentHorizontalRotation = transform.localEulerAngles.y;
         currentVerticalRotation = transform.localEulerAngles.x;
     }
