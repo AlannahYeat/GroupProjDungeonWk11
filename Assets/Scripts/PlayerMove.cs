@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
 
     public InputActionAsset inputActions;
 
-    public Camera camera;
+    //public Camera camera;
 
     private float verticalSpeed;
 
@@ -77,8 +77,8 @@ public class PlayerMove : MonoBehaviour
 
         characterController.Move(movement);
 
-        movement = camera.transform.TransformDirection(movement);
+        movement = GetComponent<Camera>().transform.TransformDirection(movement);
 
-        movement = mainCamera.transform.right * Input.GetAxis("Horizontal") + mainCamera.transform.forward * Input.GetAxis("Vertical");
+        movement = (mainCamera.transform.right * Input.GetAxis("Horizontal")) + (mainCamera.transform.forward * Input.GetAxis("Vertical"));
     }
 }
